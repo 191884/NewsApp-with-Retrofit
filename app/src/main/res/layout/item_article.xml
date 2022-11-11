@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="article"
+            type="com.yo.newsapp.model.Article" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/ivArticle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitXY"
+                loadImage = "@{article.urlToImage}"/>
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivLoading"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.Material3.CircularProgressIndicator.Medium"
+                android:indeterminateTint="@color/material_dynamic_primary0"
+                android:indeterminate="true"
+                android:max="100"
+                android:progress="20"
+                app:layout_constraintBottom_toBottomOf="@+id/ivArticleTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                />
+            
+            <TextView
+                android:id="@+id/ivArticleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/MaterialAlertDialog.Material3.Title.Text"
+                android:text="@{article.title}"
+                android:layout_margin="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivArticle"
+                />
+
+            <TextView
+                android:id="@+id/tvSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{article.source.name}"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivArticleTitle"
+                />
+
+            <TextView
+                android:id="@+id/tvPublished"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{article.publishedAt}"
+                android:layout_marginRight="8dp"
+                app:layout_constraintTop_toBottomOf="@id/ivArticleTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/bgLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPublished"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivSave"
+                android:padding="8dp"
+                android:src="@drawable/ic_save"
+                android:tag="0"
+                android:clickable="true"
+                app:tint="@color/material_dynamic_primary0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivShare"
+                app:layout_constraintTop_toBottomOf="@id/bgLine"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivShare"
+                android:src="@drawable/ic_share"
+                android:padding="8dp"
+                app:tint="@color/material_dynamic_primary0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bgLine"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
